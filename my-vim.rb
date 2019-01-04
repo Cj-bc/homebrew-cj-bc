@@ -14,7 +14,6 @@ class MyVim < Formula
   end
 
   depends_on "gettext" => :recommended
-  #   option "without-nls", "Don't support NLS (gettext())"
   depends_on "lua" => :recommended
   depends_on "perl" => :recommended
   depends_on "python" => :recommended
@@ -62,11 +61,13 @@ class MyVim < Formula
     ENV.delete("PYTHONPATH")
 
     # set up configure options
+    ohai "Generating configure options..."
     options=["--prefix=#{HOMEBREW_PREFIX}",
              "--mandir=#{man}",
              "--with-tlib=ncurses",
              "--with-compiledby=Homebrew"]
 
+    ohai "0/26"
     if build.without?("gettext")
       options.push("--disable-nls")
     end
@@ -103,6 +104,7 @@ class MyVim < Formula
     if build.with? "workshop"
       options.push("--enable-workshop")
     end
+      ohai "10/26"
     if build.with? "autoservername"
       options.push("--enable-autoservername")
     end
@@ -133,6 +135,7 @@ class MyVim < Formula
     if build.without? "rightleft"
       options.push "--disable-rightleft"
     end
+    ohai "20/26"
     if build.without? "channnel"
       options.push "--disable-channel"
     end
@@ -151,6 +154,9 @@ class MyVim < Formula
     if build.without? "largefile"
       options.push "--disable-largefile"
     end
+    ohai "26/26"
+    ohai "complete generating configure options"
+
     # We specify HOMEBREW_PREFIX as the prefix to make vim look in the
     # the right place (HOMEBREW_PREFIX/share/vim/{vimrc,vimfiles}) for
     # system vimscript files. We specify the normal installation prefix
