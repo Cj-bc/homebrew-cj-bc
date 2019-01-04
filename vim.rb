@@ -21,7 +21,7 @@ class Vim < Formula
   depends_on "python@2" => :recommended
   depends_on "ruby" => :recommended
   depends_on "cscope" => :recommended
-  depends_on :X11 => :optional
+  depends_on :x11 => :optional
 
   option "with-mzscheme", "Include MzScheme interpreter"
   option "with-workshop", "Include Sun Visual Workshop support"
