@@ -61,11 +61,12 @@ class MyVim < Formula
     ENV.delete("PYTHONPATH")
 
     # set up configure options
-    ohai "Generating configure options..."
-    options= %W["--prefix=#{HOMEBREW_PREFIX}"
-                "--mandir=#{man}"
-                "--with-tlib=ncurses"
-                "--with-compiledby=Homebrew"]
+    ohai Generating configure options...
+    options= %W[--prefix=#{HOMEBREW_PREFIX}
+                --mandir=#{man}
+                --with-tlib=ncurses
+                --with-compiledby=Homebrew
+               ]
 
     ohai "0/26"
     options << "--disable-nls" if build.without?("gettext")
