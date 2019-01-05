@@ -68,92 +68,41 @@ class MyVim < Formula
                 "--with-compiledby=Homebrew"]
 
     ohai "0/26"
-    if build.without?("gettext")
-      options.push("--disable-nls")
-    end
-
-    if build.with?("lua")
-      options.push("--enable-luainterp",
-                   "--with-lua-prefix=#{Formula["lua"].opt_prefix}")
-    end
-    if build.with?("python")
-      options.push("--enable-python3interp",
-                   "--with-python-command=python3")
-    end
-    if build.with?("python@2")
-      options.push("--enable-pythoninterp",
-                   "--with-python-command=python")
-    end
-    if build.with?("perl")
-      options.push("--enable-perlinterp")
-    end
-    if build.with?("ruby")
-      options.push("--enable-rubyinterp")
-    end
-    if build.with?("cscope")
-      options.push("--enable-cscope")
-    end
+    options << "--disable-nls" if build.without?("gettext")
+    options << ["--enable-luainterp",
+                "--with-lua-prefix=#{Formula["lua"].opt_prefix}"] if build.with?("lua")
+    options << ["--enable-python3interp",
+                "--with-python-command=python3"] if build.with?("python")
+    options << ["--enable-pythoninterp",
+                "--with-python-command=python"] if build.with?("python@2")
+    options << "--enable-perlinterp" if build.with?("perl")
+    options << "--enable-rubyinterp" if build.with?("ruby")
+    options << "--enable-cscope" if build.with?("cscope")
     if build.with?("x11")
       options.push("--enable-gui")
     else
       options.push("--enable-gui=no")
     end
-    if build.with? "mzscheme"
-      options.push("--enable-mzschemeinterp")
-    end
-    if build.with? "workshop"
-      options.push("--enable-workshop")
-    end
-      ohai "10/26"
-    if build.with? "autoservername"
-      options.push("--enable-autoservername")
-    end
-    if build.with? "multibyte"
-      options.push("--enable-multibyte")
-    end
-    if build.with? "hangulinput"
-      options.push("--enable-hangulinput")
-    end
-    if build.with? "xim"
-      options.push("--enable-xim")
-    end
-    if build.with? "fontset"
-      options.push("--enable-fontset")
-    end
-    if build.with? "x"
-      options.push("--with-x")
-    end
-    if build.with? "terminal"
-      options.push "--enable-terminal"
-    end
-    if build.without? "netbeans"
-      options.push "--disable-netbeans"
-    end
-    if build.without? "arabic"
-      options.push "--disable-arabic"
-    end
-    if build.without? "rightleft"
-      options.push "--disable-rightleft"
-    end
+    options << "--enable-mzschemeinterp" if build.with? "mzscheme"
+    options << "--enable-workshop" if build.with? "workshop"
+    ohai "10/26"
+    options << "--enable-autoservername" if build.with? "autoservername"
+    options << "--enable-multibyte" if build.with? "multibyte"
+    options << "--enable-hangulinput" if build.with? "hangulinput"
+    options << "--enable-xim" if build.with? "xim"
+    options << "--enable-fontset" if build.with? "fontset"
+    options << "--with-x" if build.with? "x"
+    options << "--enable-terminal" if build.with? "terminal"
+    options << "--disable-netbeans" if build.without? "netbeans"
+    options << "--disable-arabic" if build.without? "arabic"
+    options << "--disable-rightleft" if build.without? "rightleft"
     ohai "20/26"
-    if build.without? "channnel"
-      options.push "--disable-channel"
-    end
-    if build.without? "farsi"
-      options.push "--disable-farsi"
-    end
-    if build.without? "acl"
-      options.push "--disable-acl"
-    end
-    if build.without? "gpm"
-      options.push "--disable-gpm"
-    end
-    if build.without? "sysmouse"
-      options.push "--disable-sysmouse"
-    end
-    if build.without? "largefile"
-      options.push "--disable-largefile"
-    end
+    options << "--disable-channel" if build.without? "channnel"
+    options << "--disable-farsi" if build.without? "farsi"
+    options << "--disable-acl" if build.without? "acl"
+    options << "--disable-gpm" if build.without? "gpm"
+    options << "--disable-sysmouse" if build.without? "sysmouse"
+    options << "--disable-largefile" if build.without? "largefile"
     ohai "26/26"
     ohai "complete generating configure options"
 
