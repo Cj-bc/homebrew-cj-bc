@@ -70,12 +70,9 @@ class MyVim < Formula
 
     ohai "0/26"
     options << "--disable-nls" if build.without?("gettext")
-    options << ["--enable-luainterp",
-                "--with-lua-prefix=#{Formula["lua"].opt_prefix}"] if build.with?("lua")
-    options << ["--enable-python3interp",
-                "--with-python-command=python3"] if build.with?("python")
-    options << ["--enable-pythoninterp",
-                "--with-python-command=python"] if build.with?("python@2")
+    options << "--enable-luainterp" << "--with-lua-prefix=#{Formula["lua"].opt_prefix}" if build.with?("lua")
+    options << "--enable-python3interp" << "--with-python-command=python3" if build.with?("python")
+    options << "--enable-pythoninterp" << "--with-python-command=python" if build.with?("python@2")
     options << "--enable-perlinterp" if build.with?("perl")
     options << "--enable-rubyinterp" if build.with?("ruby")
     options << "--enable-cscope" if build.with?("cscope")
