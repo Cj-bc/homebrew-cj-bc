@@ -62,10 +62,10 @@ class MyVim < Formula
 
     # set up configure options
     ohai "Generating configure options..."
-    options=["--prefix=#{HOMEBREW_PREFIX}",
-             "--mandir=#{man}",
-             "--with-tlib=ncurses",
-             "--with-compiledby=Homebrew"]
+    options= %W["--prefix=#{HOMEBREW_PREFIX}"
+                "--mandir=#{man}"
+                "--with-tlib=ncurses"
+                "--with-compiledby=Homebrew"]
 
     ohai "0/26"
     if build.without?("gettext")
